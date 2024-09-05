@@ -12,11 +12,21 @@ import { isImageSourcePropType } from '@/types/guards/image';
 import SendImage from '@/theme/assets/images/send.png';
 import ColorsWatchImage from '@/theme/assets/images/colorswatch.png';
 import TranslateImage from '@/theme/assets/images/translate.png';
+import PrayerImage from '@/components/atoms/PrayerImage/PrayerImage';
+import UpcomingPrayer from '@/components/molecules/UpcomingPrayer/UpcomingPrayer';
+import PrayerTimes from '@/components/molecules/PrayerTimes/PrayerTime';
+import ButtonVariant from '@/components/atoms/ButtonVariant/ButtonVariant';
+import BluetoothIcon from '@/theme/assets/images/bluetooth.svg'
+import SettingsIcon from '@/theme/assets/images/settings_icon.svg'
+import ClockIcon from '@/theme/assets/images/clock_icon.svg'
+import colours from '@/theme/colours';
+import DeviceConnectionStatus from '@/components/molecules/DeviceConnectionStatus/DeviceConnectionStatus';
+
 
 function Example() {
     const { t } = useTranslation(['example', 'welcome']);
     const { colors, variant, changeTheme, layout, gutters, fonts, components, backgrounds, } = useTheme();
-    const [currentId, setCurrentId] = useState(-1);
+    const [currentId, setCurrentId] = useState(0);
     const { isSuccess, data, isFetching } = useQuery({
         queryKey: ['example', currentId],
         queryFn: () => {
@@ -40,19 +50,29 @@ function Example() {
         !isImageSourcePropType(TranslateImage)) {
         throw new Error('Image source is not valid');
     }
-    return (<SafeScreen>
-			<ScrollView>
+    return (
+        <View>
 				<View style={[
-            layout.justifyCenter,
-            layout.itemsCenter,
-            gutters.marginTop_80,
-        ]}>
-					<View style={[layout.relative, backgrounds.gray100, components.circle250]}/>
-
-					<View style={[layout.absolute, gutters.paddingTop_80]}>
-						<Brand height={300} width={300}/>
-					</View>
+                    layout.justifyCenter,
+                    layout.itemsCenter,
+                ]}>
+            		<PrayerImage prayer={"Isha"} />
+                    <UpcomingPrayer prayerName={"Isha"} prayerTime={"10:45pm"} />
+                    <PrayerTimes />
+                    <DeviceConnectionStatus deviceName={"MyAthanClock"} isConnected={true}/>
+                    <View style={layout.row}>
+                        {true && (
+                            <ButtonVariant onPressCallback={() => console.log("hello")} colour={colours.gray} text="Connect" Icon={BluetoothIcon} />
+                        )}
+                        {false && (
+                            <ButtonVariant onPressCallback={() => console.log("hello")} colour={colours.gray} text="Clock Settings" Icon={ClockIcon} />
+                        )}
+                        {false && (
+                            <ButtonVariant onPressCallback={() => console.log("hello")} colour={colours.purple} text="Athan Settings" Icon={SettingsIcon} />
+                        )}
+                    </View>
 				</View>
+
 
 				<View style={[gutters.paddingHorizontal_32, gutters.marginTop_40]}>
 					<View style={[gutters.marginTop_40]}>
@@ -78,7 +98,7 @@ function Example() {
             layout.fullWidth,
             gutters.marginTop_16,
         ]}>
-						<TouchableOpacity testID="fetch-user-button" style={[components.buttonCircle, gutters.marginBottom_16]} onPress={() => setCurrentId(Math.ceil(Math.random() * 10 + 1))}>
+						<TouchableOpacity testID="fetch-user-button" style={[components.buttonCircle, gutters.marginBottom_16]} onPress={() => setCurrentId(Math.ceil(Math.random() * 4 + 1))}>
 							{isFetching ? (<ActivityIndicator />) : (<ImageVariant source={SendImage} style={{ tintColor: colors.purple500 }}/>)}
 						</TouchableOpacity>
 
@@ -91,7 +111,7 @@ function Example() {
 						</TouchableOpacity>
 					</View>
 				</View>
-			</ScrollView>
-		</SafeScreen>);
+                </View>
+		    );
 }
 export default Example;

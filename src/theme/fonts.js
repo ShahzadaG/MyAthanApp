@@ -18,6 +18,13 @@ export const generateFontSizes = () => {
     }, {});
 };
 export const staticFontStyles = {
+    baseFont: {
+        color: '#999',
+        fontFamily: 'Poppins',
+        fontSize: 15,
+        fontStyle: 'normal',
+        fontWeight: '500',
+    },
     bold: {
         fontWeight: 'bold',
     },
@@ -30,4 +37,18 @@ export const staticFontStyles = {
     alignCenter: {
         textAlign: 'center',
     },
+    upcomingPrayerText: {
+        color: '#999',
+        fontFamily: 'Poppins',
+        fontSize: 15,
+        fontStyle: 'normal',
+        fontWeight: '500',
+      },
+      upcomingPrayerTextInfo: {
+        color: '#6849FF',
+        fontFamily: 'Poppins',
+        fontSize: 20,
+        fontStyle: 'normal',
+        fontWeight: '600',
+      },
 };

@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { Image } from 'react-native';
 import { useTheme } from '@/theme';
+
 function ImageVariant({ source: defaultSource, ...props }) {
     const { variant } = useTheme();
     const source = useMemo(() => {
@@ -19,4 +20,5 @@ function ImageVariant({ source: defaultSource, ...props }) {
     }, [variant]);
     return <Image testID="variant-image" source={source} {...props}/>;
 }
+
 export default ImageVariant;

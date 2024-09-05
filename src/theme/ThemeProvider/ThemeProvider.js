@@ -3,6 +3,7 @@ import { config } from '@/theme/_config';
 import { generateFontSizes, generateFontColors, staticFontStyles, } from '@/theme/fonts';
 import { generateBorderColors, generateBorderRadius, generateBorderWidths, } from '@/theme/borders';
 import layout from '@/theme/layout';
+import colours from '@/theme/colours';
 import componentsGenerator from '@/theme/components';
 import { generateBackgrounds } from '@/theme/backgrounds';
 import { generateGutters } from '@/theme/gutters';
@@ -56,11 +57,12 @@ function ThemeProvider({ children, storage }) {
             variant,
             gutters: generateGutters(),
             layout,
+            colours,
             fonts,
             backgrounds,
             borders,
         };
-    }, [variant, layout, fonts, backgrounds, borders, fullConfig.colors]);
+    }, [variant, layout, fonts, backgrounds, borders, colours]);
     const components = useMemo(() => {
         return componentsGenerator(theme);
     }, [theme]);

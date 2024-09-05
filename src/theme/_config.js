@@ -7,8 +7,8 @@ const colorsLight = {
     gray100: '#DFDFDF',
     gray50: '#EFEFEF',
     purple500: '#44427D',
-    purple100: '#E1E1EF',
-    purple50: '#1B1A23',
+    black: '#000',
+    purple: '#6849FF',
 };
 const colorsDark = {
     red500: '#C13333',
@@ -21,7 +21,7 @@ const colorsDark = {
     purple100: '#252732',
     purple50: '#1B1A23',
 };
-const sizes = [12, 16, 24, 32, 40, 80];
+const sizes = [0, 12, 16, 24, 32, 40, 80];
 export const config = {
     colors: colorsLight,
     fonts: {
